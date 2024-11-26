@@ -1,8 +1,17 @@
 package abdullah.example;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ArrayEasyPrograms {
+
+    public static void main(String[] args){
+//        sortArray();
+//        arrSortWithBuiltin();
+//        mergeArr();
+        sortArrByColumn();
+    }
+
     public static int largestElem(int[] arr){
         int largest = arr[0];
         for(int temp: arr){
@@ -89,6 +98,95 @@ public class ArrayEasyPrograms {
 //        }
 
         return arr;
+    }
+
+    //sorting an array
+    public static void sortArray(){
+        int[] arr = new int[10];
+        for(int i = 0; i <arr.length; i++){
+            arr[i] = (int) (Math.random()*100);
+        }
+        for(int elem: arr){
+            System.out.print(elem + ", ");
+        }
+        System.out.println();
+
+        //56, 26, 29, 86, 29, 10, 22, 89, 7, 87
+        //first loop:
+        //26, 56, 29, 86, 29, 10, 22, 89, 7, 87
+        //7, 56, 29, 86, 29, 26, 22, 89, 10, 87
+
+
+        for(int i = 0; i < arr.length; i++){
+            for(int j = i+1; j < arr.length; j++){
+                if(arr[i] > arr[j]){
+                    System.out.println(arr[i]);
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                    System.out.println(arr[i]);
+                }
+            }
+            System.out.print(Arrays.toString(arr));
+            System.out.println();
+        }
+        for(int elem: arr){
+            System.out.print(elem + ", ");
+        }
+
+    }
+
+    public static void arrSortWithBuiltin(){
+        int[] a = {2, -1, 5, 4, 3};
+        char[] c = {'b', 'a', 'c', 'b'};
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(c));
+        Arrays.sort(a);
+        Arrays.sort(c);
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(c));
+    }
+    public static void arrSortReverse(){
+        Integer[] a = {2, -1, 5, 4, 3};
+        char[] c = {'b', 'a', 'c', 'b'};
+
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(c));
+
+        Arrays.sort(a, Collections.reverseOrder());
+
+    }
+
+    public static void mergeArr(){
+        int[] a = { 10, 20, 30, 40 };
+        int[] b = { 50, 60, 70, 80 };
+        int[] sum = new int[a.length+b.length];
+
+        System.out.println(Arrays.toString(sum));
+
+        sum[0] = 999;
+
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(sum));
+
+        System.arraycopy(a, 0, sum, 0, a.length);
+        System.arraycopy(b, 0, sum, a.length, b.length);
+
+        System.out.println(Arrays.toString(sum));
+    }
+    //Sorting a 2D Array according to values in any given column in Java
+    public static void sortArrByColumn(){
+        int[][] arr = {
+                {39, 27, 11, 42},
+                {10, 93, 91, 90},
+                {54, 78, 56, 89},
+                {24, 64, 20, 65}
+        };
+        int col = 3;
+        Arrays.sort(arr, (a, b) -> Integer.compare(a[col-1], b[col-1]));
+        for(int[]row: arr){
+            System.out.println(Arrays.toString(row));
+        }
     }
 
 }
